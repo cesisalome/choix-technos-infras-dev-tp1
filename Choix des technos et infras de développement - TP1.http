@@ -1,0 +1,6 @@
+@Choix_des_technos_et_infras_de_développement___TP1_HostAddress = http://localhost:5254
+
+GET {{Choix_des_technos_et_infras_de_développement___TP1_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
