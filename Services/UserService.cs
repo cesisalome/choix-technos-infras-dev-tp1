@@ -73,11 +73,11 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Services
             }
         }
 
-        public async Task UpdateUserAsync(UserModel user, CancellationToken cancellationToken)
+        public async Task UpdateUserAsync(int id, UserModel user, CancellationToken cancellationToken)
         {
             try
             {
-                var userToUpdate = await _dbContext.Users.FindAsync(user, cancellationToken);
+                var userToUpdate = await _dbContext.Users.FindAsync(id, cancellationToken);
 
                 if (userToUpdate == null)
                 {

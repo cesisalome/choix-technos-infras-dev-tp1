@@ -48,12 +48,12 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Controllers
             }
         }
 
-        [HttpPost("/update")]
-        public async Task UpdateUserAsync([FromBody, Required] UserModel user, CancellationToken cancellationToken)
+        [HttpPost("/{id}/update")]
+        public async Task UpdateUserAsync([FromRoute, Required] int id, [FromBody, Required] UserModel user, CancellationToken cancellationToken)
         {
             try
             {
-                await _userService.UpdateUserAsync(user, cancellationToken);
+                await _userService.UpdateUserAsync(id, user, cancellationToken);
             }
             catch (Exception ex)
             {
