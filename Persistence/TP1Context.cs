@@ -1,7 +1,7 @@
-﻿using Choix_des_technos_et_infras_de_développement___TP1.Entities;
+﻿using Choix_des_technos_et_infras_de_développement___TP1.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Choix_des_technos_et_infras_de_développement___TP1.DataAccess
+namespace Choix_des_technos_et_infras_de_développement___TP1.Persistence
 {
     public class TP1Context : DbContext
     {

@@ -1,9 +1,8 @@
-﻿using Choix_des_technos_et_infras_de_développement___TP1.Models;
-using Choix_des_technos_et_infras_de_développement___TP1.Services;
+﻿using Choix_des_technos_et_infras_de_développement___TP1.Application;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace Choix_des_technos_et_infras_de_développement___TP1.Controllers
+namespace Choix_des_technos_et_infras_de_développement___TP1.Presentation
 {
     [ApiController]
     [Route("[controller]")]
@@ -30,7 +29,8 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Controllers
 
                 return Ok(result);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
         }

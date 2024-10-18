@@ -1,4 +1,4 @@
-﻿namespace Choix_des_technos_et_infras_de_développement___TP1.Models
+﻿namespace Choix_des_technos_et_infras_de_développement___TP1.Application
 {
     public class UserModel
     {

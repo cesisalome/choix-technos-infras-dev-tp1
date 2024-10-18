@@ -1,5 +1,5 @@
-using Choix_des_technos_et_infras_de_développement___TP1.DataAccess;
-using Choix_des_technos_et_infras_de_développement___TP1.Services;
+using Choix_des_technos_et_infras_de_développement___TP1.Application;
+using Choix_des_technos_et_infras_de_développement___TP1.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

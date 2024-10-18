@@ -1,9 +1,8 @@
-﻿using Choix_des_technos_et_infras_de_développement___TP1.DataAccess;
-using Choix_des_technos_et_infras_de_développement___TP1.Entities;
-using Choix_des_technos_et_infras_de_développement___TP1.Models;
+﻿using Choix_des_technos_et_infras_de_développement___TP1.Domain;
+using Choix_des_technos_et_infras_de_développement___TP1.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Choix_des_technos_et_infras_de_développement___TP1.Services
+namespace Choix_des_technos_et_infras_de_développement___TP1.Application
 {
     public class UserService
     {
@@ -38,7 +37,8 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Services
 
                 return user;
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 throw;
             }
         }
@@ -51,7 +51,8 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Services
                     .Where(profile => profile.Name == user.ProfileName)
                     .FirstOrDefaultAsync(cancellationToken);
 
-                if (profile == null) {
+                if (profile == null)
+                {
                     throw new Exception(string.Format("Profile not found : {0}", user.ProfileName));
                 }
 
@@ -101,7 +102,8 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Services
 
                 await _dbContext.SaveChangesAsync(cancellationToken);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 throw;
             }
         }
@@ -120,7 +122,8 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Services
                 _dbContext.Users.Remove(userToDelete);
                 await _dbContext.SaveChangesAsync(cancellationToken);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 throw;
             }
         }
