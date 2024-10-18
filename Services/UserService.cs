@@ -19,6 +19,7 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Services
             try
             {
                 var user = await _dbContext.Users
+                    .Include(user => user.Profile)
                     .Where(user => user.Id == userId)
                     .Select(user => new UserModel
                     {
@@ -26,6 +27,7 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Services
                         LastName = user.LastName,
                         Email = user.Email,
                         PhoneNumber = user.PhoneNumber,
+                        ProfileName = user.Profile.Name
                     })
                     .FirstOrDefaultAsync(cancellationToken);
 
@@ -45,12 +47,21 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Services
         {
             try
             {
+                var profile = await _dbContext.Profiles
+                    .Where(profile => profile.Name == user.ProfileName)
+                    .FirstOrDefaultAsync(cancellationToken);
+
+                if (profile == null) {
+                    throw new Exception(string.Format("Profile not found : {0}", user.ProfileName));
+                }
+
                 var userToAdd = new UserEntity
                 {
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
                     PhoneNumber = user.PhoneNumber,
+                    Profile = profile,
                 };
 
                 await _dbContext.Users.AddAsync(userToAdd, cancellationToken);
@@ -73,10 +84,20 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Services
                     throw new Exception(string.Format("User not found : {0}", user));
                 }
 
+                var profile = await _dbContext.Profiles
+                    .Where(profile => profile.Name == user.ProfileName)
+                    .FirstOrDefaultAsync(cancellationToken);
+
+                if (profile == null)
+                {
+                    throw new Exception(string.Format("Profile not found : {0}", user.ProfileName));
+                }
+
                 userToUpdate.FirstName = user.FirstName;
                 userToUpdate.LastName = user.LastName;
                 userToUpdate.PhoneNumber = user.PhoneNumber;
                 userToUpdate.Email = user.Email;
+                userToUpdate.Profile = profile;
 
                 await _dbContext.SaveChangesAsync(cancellationToken);
             }
