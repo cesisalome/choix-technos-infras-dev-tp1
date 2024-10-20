@@ -1,4 +1,5 @@
-using Choix_des_technos_et_infras_de_développement___TP1.Application;
+using Choix_des_technos_et_infras_de_développement___TP1.Application.User.Commands;
+using Choix_des_technos_et_infras_de_développement___TP1.Application.User.Queries;
 using Choix_des_technos_et_infras_de_développement___TP1.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,10 @@ builder.Services.AddDbContext<TP1Context>(options =>
     options.UseSqlite("Data Source=TP1.db"));
 
 // Ajouter le UserService pour l'injection de dépendance
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<GetUserQuery>();
+builder.Services.AddScoped<AddUserCommand>();
+builder.Services.AddScoped<UpdateUserCommand>();
+builder.Services.AddScoped<DeleteUserCommand>();
 
 // Add services to the container.
 

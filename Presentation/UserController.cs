@@ -1,4 +1,6 @@
 ﻿using Choix_des_technos_et_infras_de_développement___TP1.Application;
+using Choix_des_technos_et_infras_de_développement___TP1.Application.User.Commands;
+using Choix_des_technos_et_infras_de_développement___TP1.Application.User.Queries;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,11 +10,17 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Presentation
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly GetUserQuery _getUserQuery;
+        private readonly AddUserCommand _addUserCommand;
+        private readonly UpdateUserCommand _updateUserCommand;
+        private readonly DeleteUserCommand _deleteUserCommand;
 
-        public UserController(UserService userService)
+        public UserController(GetUserQuery getUserQuery, AddUserCommand addUserCommand, UpdateUserCommand updateUserCommand, DeleteUserCommand deleteUserCommand)
         {
-            _userService = userService;
+            _getUserQuery = getUserQuery;
+            _addUserCommand = addUserCommand;
+            _updateUserCommand = updateUserCommand;
+            _deleteUserCommand = deleteUserCommand;
         }
 
         [HttpGet("/{id}")]
@@ -20,7 +28,7 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Presentation
         {
             try
             {
-                var result = await _userService.GetUserByIdAsync(id, cancellationToken);
+                var result = await _getUserQuery.GetUserByIdAsync(id, cancellationToken);
 
                 if (result == null)
                 {
@@ -40,7 +48,7 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Presentation
         {
             try
             {
-                await _userService.AddUserAsync(user, cancellationToken);
+                await _addUserCommand.AddUserAsync(user, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -53,7 +61,7 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Presentation
         {
             try
             {
-                await _userService.UpdateUserAsync(id, user, cancellationToken);
+                await _updateUserCommand.UpdateUserAsync(id, user, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -66,7 +74,7 @@ namespace Choix_des_technos_et_infras_de_développement___TP1.Presentation
         {
             try
             {
-                await _userService.DeleteUserByIdAsync(id, cancellationToken);
+                await _deleteUserCommand.DeleteUserByIdAsync(id, cancellationToken);
             }
             catch (Exception ex)
             {
