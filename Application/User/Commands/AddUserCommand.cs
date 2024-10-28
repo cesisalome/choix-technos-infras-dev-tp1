@@ -1,4 +1,5 @@
-﻿using Choix_des_technos_et_infras_de_développement___TP1.Domain;
+﻿using Choix_des_technos_et_infras_de_développement___TP1.Application.Models;
+using Choix_des_technos_et_infras_de_développement___TP1.Domain;
 using Choix_des_technos_et_infras_de_développement___TP1.Persistence;
 using Microsoft.EntityFrameworkCore;
 
